@@ -155,19 +155,42 @@
     }
 
     .tile.running {
-      border-color: #fff;
+      border-color: var(--glow, #fff);
+      border-width: 2px;
+      background:
+        radial-gradient(ellipse at 50% 30%, color-mix(in srgb, var(--glow, #555) 65%, transparent) 0%, transparent 70%),
+        linear-gradient(160deg, color-mix(in srgb, var(--glow, #555) 45%, #0c0c18) 0%, #0c0c18 100%);
       box-shadow:
-        0 0 30px color-mix(in srgb, var(--glow, #555) 40%, transparent),
-        0 0 60px color-mix(in srgb, var(--glow, #555) 15%, transparent),
-        inset 0 1px 0 rgba(255,255,255,0.1);
+        0 0 25px color-mix(in srgb, var(--glow, #555) 50%, transparent),
+        0 0 60px color-mix(in srgb, var(--glow, #555) 25%, transparent),
+        0 0 100px color-mix(in srgb, var(--glow, #555) 10%, transparent),
+        inset 0 1px 0 rgba(255,255,255,0.12);
       animation: pulse 2.5s ease-in-out infinite;
     }
 
-    .tile.running .timer-display { display: block; }
+    .tile.running .icon {
+      color: #fff;
+      filter: drop-shadow(0 0 8px var(--glow, transparent))
+              drop-shadow(0 0 20px var(--glow, transparent));
+    }
+
+    .tile.running .label { color: #fff; }
+
+    .tile.running .timer-display { display: block; color: #fff; }
 
     @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 20px color-mix(in srgb, var(--glow, #555) 30%, transparent); }
-      50% { box-shadow: 0 0 40px color-mix(in srgb, var(--glow, #555) 50%, transparent), 0 0 80px color-mix(in srgb, var(--glow, #555) 20%, transparent); }
+      0%, 100% {
+        box-shadow:
+          0 0 25px color-mix(in srgb, var(--glow, #555) 50%, transparent),
+          0 0 60px color-mix(in srgb, var(--glow, #555) 25%, transparent),
+          0 0 100px color-mix(in srgb, var(--glow, #555) 10%, transparent);
+      }
+      50% {
+        box-shadow:
+          0 0 35px color-mix(in srgb, var(--glow, #555) 70%, transparent),
+          0 0 80px color-mix(in srgb, var(--glow, #555) 35%, transparent),
+          0 0 120px color-mix(in srgb, var(--glow, #555) 15%, transparent);
+      }
     }
 
     /* Heute View */
