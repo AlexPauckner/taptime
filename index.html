@@ -32,15 +32,16 @@
       overflow: hidden;
     }
 
+    /* Header */
     .header {
-      padding: 10px 16px;
-      padding-top: max(10px, env(safe-area-inset-top));
+      padding: 8px 16px;
+      padding-top: max(8px, env(safe-area-inset-top));
       text-align: center;
       flex-shrink: 0;
     }
 
     .header h1 {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 700;
       color: #fff;
       letter-spacing: 1px;
@@ -50,17 +51,19 @@
       font-size: 12px;
       color: #888;
       margin-top: 2px;
+      min-height: 16px;
     }
 
     .header .status.active {
       color: #4ade80;
     }
 
+    /* Views */
     .view {
       display: none;
       flex: 1;
       overflow-y: auto;
-      padding: 4px 10px;
+      padding: 4px 12px;
     }
 
     .view.active {
@@ -68,25 +71,36 @@
       flex-direction: column;
     }
 
-    /* 4x4 Grid */
+    /* 3-Column Grid — Fullscreen */
     .grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 8px;
       flex: 1;
-      align-content: center;
-      padding: 2px 0;
+      align-content: start;
+      padding: 4px 0;
+    }
+
+    /* Row separators (thematic groups) */
+    .grid-separator {
+      grid-column: 1 / -1;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: rgba(255, 255, 255, 0.25);
+      padding: 6px 4px 2px;
     }
 
     .tile {
       position: relative;
-      border-radius: 14px;
+      border-radius: 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 8px 4px;
-      min-height: 76px;
+      padding: 10px 6px;
+      min-height: 88px;
       cursor: pointer;
       transition: transform 0.1s ease, box-shadow 0.2s ease;
       border: 3px solid transparent;
@@ -97,12 +111,12 @@
     }
 
     .tile .emoji {
-      font-size: 24px;
-      margin-bottom: 2px;
+      font-size: 26px;
+      margin-bottom: 3px;
     }
 
     .tile .label {
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 600;
       text-align: center;
       line-height: 1.2;
@@ -110,9 +124,9 @@
     }
 
     .tile .timer-display {
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 700;
-      margin-top: 2px;
+      margin-top: 3px;
       font-variant-numeric: tabular-nums;
       color: rgba(0, 0, 0, 0.9);
       display: none;
@@ -133,43 +147,47 @@
       border: 2px dashed rgba(255, 255, 255, 0.2);
     }
 
-    .tile.custom-empty .label {
-      color: rgba(255, 255, 255, 0.3);
-    }
-
-    .tile.custom-empty .emoji {
-      opacity: 0.4;
-    }
+    .tile.custom-empty .label { color: rgba(255, 255, 255, 0.3); }
+    .tile.custom-empty .emoji { opacity: 0.4; }
 
     @keyframes pulse {
       0%, 100% { box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); }
       50% { box-shadow: 0 0 30px rgba(255, 255, 255, 0.5); }
     }
 
-    /* Tile Colors — dark text by default, light text override for dark tiles */
-    .tile[data-cat="kita"] { background: #facc15; }
-    .tile[data-cat="brainstorm"] { background: #a855f7; }
-    .tile[data-cat="brainstorm"] .label,
-    .tile[data-cat="brainstorm"] .timer-display { color: rgba(255,255,255,0.95); }
-    .tile[data-cat="ki-fortbildung"] { background: #3b82f6; }
-    .tile[data-cat="ki-fortbildung"] .label,
-    .tile[data-cat="ki-fortbildung"] .timer-display { color: rgba(255,255,255,0.95); }
-    .tile[data-cat="ki-oekosystem"] { background: #06b6d4; }
-    .tile[data-cat="hausarbeit"] { background: #22c55e; }
-    .tile[data-cat="kueche"] { background: #86efac; }
-    .tile[data-cat="kochen"] { background: #f97316; }
-    .tile[data-cat="einkaufen"] { background: #ef4444; }
-    .tile[data-cat="einkaufen"] .label,
-    .tile[data-cat="einkaufen"] .timer-display { color: rgba(255,255,255,0.95); }
-    .tile[data-cat="kinder"] { background: #f9a8d4; }
+    /* Tile Colors — Beruf: Blau/Lila/Indigo */
     .tile[data-cat="eiinh"] { background: #818cf8; }
     .tile[data-cat="eiinh"] .label,
     .tile[data-cat="eiinh"] .timer-display { color: rgba(255,255,255,0.95); }
-    .tile[data-cat="bilderbuch"] { background: #fbbf24; }
-    .tile[data-cat="finanzen"] { background: #34d399; }
+    .tile[data-cat="bilderbuch"] { background: #a78bfa; }
+    .tile[data-cat="bilderbuch"] .label,
+    .tile[data-cat="bilderbuch"] .timer-display { color: rgba(255,255,255,0.95); }
+    .tile[data-cat="ki-oekosystem"] { background: #6366f1; }
+    .tile[data-cat="ki-oekosystem"] .label,
+    .tile[data-cat="ki-oekosystem"] .timer-display { color: rgba(255,255,255,0.95); }
+    .tile[data-cat="kita"] { background: #facc15; }
+    .tile[data-cat="ki-fortbildung"] { background: #3b82f6; }
+    .tile[data-cat="ki-fortbildung"] .label,
+    .tile[data-cat="ki-fortbildung"] .timer-display { color: rgba(255,255,255,0.95); }
+    .tile[data-cat="brainstorm"] { background: #a855f7; }
+    .tile[data-cat="brainstorm"] .label,
+    .tile[data-cat="brainstorm"] .timer-display { color: rgba(255,255,255,0.95); }
+
+    /* Haushalt: Grün/Warm-Töne */
+    .tile[data-cat="kinder"] { background: #f9a8d4; }
+    .tile[data-cat="hausarbeit"] { background: #4ade80; }
+    .tile[data-cat="kueche"] { background: #86efac; }
+    .tile[data-cat="kochen"] { background: #fb923c; }
+    .tile[data-cat="einkaufen"] { background: #f87171; }
+    .tile[data-cat="einkaufen"] .label,
+    .tile[data-cat="einkaufen"] .timer-display { color: rgba(255,255,255,0.95); }
+    .tile[data-cat="buchhaltung"] { background: #34d399; }
+
+    /* Persönlich: Gelb/Türkis */
+    .tile[data-cat="jasmin"] { background: #fcd34d; }
     .tile[data-cat="freizeit"] { background: #2dd4bf; }
 
-    /* Today View */
+    /* Heute View */
     .today-header {
       font-size: 18px;
       font-weight: 700;
@@ -186,26 +204,6 @@
     }
 
     .bar-container { margin-bottom: 14px; }
-
-    .time-entries {
-      padding: 4px 0 0 4px;
-    }
-
-    .time-entry {
-      font-size: 11px;
-      color: #999;
-      padding: 2px 0;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .time-entry .time-range {
-      font-variant-numeric: tabular-nums;
-    }
-
-    .time-entry .time-dur {
-      color: #666;
-    }
 
     .bar-label {
       display: flex;
@@ -226,14 +224,20 @@
       height: 100%;
       border-radius: 8px;
       transition: width 0.3s ease;
-      display: flex;
-      align-items: center;
-      padding-left: 8px;
-      font-size: 11px;
-      font-weight: 600;
-      color: rgba(0,0,0,0.7);
-      min-width: fit-content;
     }
+
+    .time-entries { padding: 4px 0 0 4px; }
+
+    .time-entry {
+      font-size: 11px;
+      color: #999;
+      padding: 2px 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .time-entry .time-range { font-variant-numeric: tabular-nums; }
+    .time-entry .time-dur { color: #666; }
 
     /* Export View */
     .export-section {
@@ -254,30 +258,14 @@
       font-weight: 600;
       cursor: pointer;
       text-align: center;
-      transition: background 0.2s;
     }
 
     .export-btn:active { background: rgba(255,255,255,0.2); }
+    .export-btn .sub { font-size: 12px; font-weight: 400; color: #888; margin-top: 4px; }
 
-    .export-btn .sub {
-      font-size: 12px;
-      font-weight: 400;
-      color: #888;
-      margin-top: 4px;
-    }
+    .export-feedback { text-align: center; font-size: 14px; color: #4ade80; min-height: 20px; }
 
-    .export-feedback {
-      text-align: center;
-      font-size: 14px;
-      color: #4ade80;
-      min-height: 20px;
-    }
-
-    .danger-zone {
-      margin-top: auto;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
+    .danger-zone { margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
 
     .danger-btn {
       background: rgba(239, 68, 68, 0.15);
@@ -309,18 +297,61 @@
       color: #666;
       font-size: 11px;
       font-weight: 600;
-      transition: color 0.2s;
       background: none;
       border: none;
     }
 
-    .nav-btn .nav-icon {
-      font-size: 22px;
-      display: block;
-      margin-bottom: 2px;
+    .nav-btn .nav-icon { font-size: 22px; display: block; margin-bottom: 2px; }
+    .nav-btn.active { color: #fff; }
+
+    /* Correction Popup */
+    .correction-popup {
+      display: none;
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 80px;
+      background: #2a2a4a;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 12px 16px;
+      z-index: 50;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      animation: slideUp 0.2s ease-out;
     }
 
-    .nav-btn.active { color: #fff; }
+    .correction-popup.show { display: block; }
+
+    @keyframes slideUp {
+      from { transform: translateX(-50%) translateY(20px); opacity: 0; }
+      to { transform: translateX(-50%) translateY(0); opacity: 1; }
+    }
+
+    .correction-label { font-size: 12px; color: #888; margin-bottom: 8px; }
+
+    .correction-buttons { display: flex; gap: 8px; }
+
+    .corr-btn {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .corr-btn:active { background: rgba(255,255,255,0.25); }
+
+    .correction-current {
+      font-size: 11px;
+      color: #4ade80;
+      margin-top: 8px;
+      font-variant-numeric: tabular-nums;
+    }
 
     /* Edit Modal */
     .modal-overlay {
@@ -334,9 +365,7 @@
       padding: 20px;
     }
 
-    .modal-overlay.show {
-      display: flex;
-    }
+    .modal-overlay.show { display: flex; }
 
     .modal {
       background: #2a2a4a;
@@ -346,19 +375,10 @@
       max-width: 320px;
     }
 
-    .modal h2 {
-      font-size: 18px;
-      color: #fff;
-      margin-bottom: 16px;
-      text-align: center;
-    }
+    .modal h2 { font-size: 18px; color: #fff; margin-bottom: 16px; text-align: center; }
 
     .modal label {
-      font-size: 13px;
-      color: #aaa;
-      display: block;
-      margin-bottom: 4px;
-      margin-top: 12px;
+      font-size: 13px; color: #aaa; display: block; margin-bottom: 4px; margin-top: 12px;
     }
 
     .modal input[type="text"] {
@@ -373,65 +393,30 @@
       outline: none;
     }
 
-    .modal input[type="text"]:focus {
-      border-color: rgba(255,255,255,0.4);
-    }
+    .modal input[type="text"]:focus { border-color: rgba(255,255,255,0.4); }
 
-    .color-picker {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 6px;
-    }
+    .color-picker { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
 
     .color-dot {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      cursor: pointer;
-      border: 3px solid transparent;
-      transition: border-color 0.2s, transform 0.1s;
+      width: 36px; height: 36px; border-radius: 50%; cursor: pointer;
+      border: 3px solid transparent; transition: border-color 0.2s, transform 0.1s;
     }
 
-    .color-dot.selected {
-      border-color: #fff;
-      transform: scale(1.15);
-    }
+    .color-dot.selected { border-color: #fff; transform: scale(1.15); }
 
-    .modal-buttons {
-      display: flex;
-      gap: 10px;
-      margin-top: 20px;
-    }
+    .modal-buttons { display: flex; gap: 10px; margin-top: 20px; }
 
     .modal-btn {
-      flex: 1;
-      padding: 12px;
-      border-radius: 10px;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      font-family: inherit;
+      flex: 1; padding: 12px; border-radius: 10px; font-size: 15px;
+      font-weight: 600; cursor: pointer; border: none; font-family: inherit;
     }
 
-    .modal-btn.cancel {
-      background: rgba(255,255,255,0.1);
-      color: #aaa;
-    }
-
-    .modal-btn.save {
-      background: #3b82f6;
-      color: #fff;
-    }
+    .modal-btn.cancel { background: rgba(255,255,255,0.1); color: #aaa; }
+    .modal-btn.save { background: #3b82f6; color: #fff; }
 
     .modal-btn.reset {
-      background: rgba(239, 68, 68, 0.2);
-      color: #ef4444;
-      font-size: 13px;
-      padding: 8px;
-      margin-top: 8px;
-      width: 100%;
+      background: rgba(239, 68, 68, 0.2); color: #ef4444;
+      font-size: 13px; padding: 8px; margin-top: 8px; width: 100%;
     }
   </style>
 </head>
@@ -473,6 +458,18 @@
     </div>
   </div>
 
+  <!-- Correction Popup -->
+  <div class="correction-popup" id="correctionPopup">
+    <div class="correction-label">Startzeit korrigieren:</div>
+    <div class="correction-buttons">
+      <button class="corr-btn" data-minutes="5">−5</button>
+      <button class="corr-btn" data-minutes="15">−15</button>
+      <button class="corr-btn" data-minutes="30">−30</button>
+      <button class="corr-btn" data-minutes="60">−60</button>
+    </div>
+    <div class="correction-current" id="correctionCurrent"></div>
+  </div>
+
   <!-- Edit Modal for custom tiles -->
   <div class="modal-overlay" id="editModal">
     <div class="modal">
@@ -493,38 +490,43 @@
 
   <nav class="nav">
     <button class="nav-btn active" data-view="viewTimer">
-      <span class="nav-icon">⏱️</span>
-      Timer
+      <span class="nav-icon">⏱️</span>Timer
     </button>
     <button class="nav-btn" data-view="viewToday">
-      <span class="nav-icon">📊</span>
-      Heute
+      <span class="nav-icon">📊</span>Heute
     </button>
     <button class="nav-btn" data-view="viewExport">
-      <span class="nav-icon">💾</span>
-      Export
+      <span class="nav-icon">💾</span>Export
     </button>
   </nav>
 
   <script>
-    // === Fixed Categories ===
+    // ========================================
+    // CATEGORIES — thematisch sortiert (3er Grid)
+    // ========================================
     const FIXED_CATEGORIES = [
-      { id: 'kita', name: 'Kita', emoji: '🏫' },
-      { id: 'brainstorm', name: 'Brainstorm', emoji: '💡' },
-      { id: 'ki-fortbildung', name: 'KI-Fortbildung', emoji: '🎓' },
-      { id: 'ki-oekosystem', name: 'KI-Ökosystem', emoji: '⚙️' },
-      { id: 'hausarbeit', name: 'Hausarbeit', emoji: '🧹' },
-      { id: 'kueche', name: 'Küche', emoji: '🍽️' },
-      { id: 'kochen', name: 'Kochen', emoji: '🍳' },
-      { id: 'einkaufen', name: 'Einkaufen', emoji: '🛒' },
-      { id: 'kinder', name: 'Kinder', emoji: '👶' },
-      { id: 'eiinh', name: 'EIINH', emoji: '🎬' },
-      { id: 'bilderbuch', name: 'Bilderbuch', emoji: '📖' },
-      { id: 'finanzen', name: 'Finanzen', emoji: '💰' },
+      // Reihe 1: Beruf / Kreativ
+      { id: 'eiinh', name: 'EIINH', emoji: '🎬', group: 'Beruf' },
+      { id: 'bilderbuch', name: 'Bilderbuch', emoji: '📖', group: 'Beruf' },
+      { id: 'ki-oekosystem', name: 'KI-Ökosystem', emoji: '⚙️', group: 'Beruf' },
+      // Reihe 2: Beruf / Lernen
+      { id: 'kita', name: 'Kita', emoji: '🏫', group: 'Beruf' },
+      { id: 'ki-fortbildung', name: 'KI-Fortbildung', emoji: '🎓', group: 'Beruf' },
+      { id: 'brainstorm', name: 'Brainstorm', emoji: '💡', group: 'Beruf' },
+      // Reihe 3: Haushalt / Kinder
+      { id: 'kinder', name: 'Kinder', emoji: '👶', group: 'Haushalt' },
+      { id: 'hausarbeit', name: 'Hausarbeit', emoji: '🧹', group: 'Haushalt' },
+      { id: 'kueche', name: 'Küche', emoji: '🍽️', group: 'Haushalt' },
+      // Reihe 4: Haushalt / Versorgung
+      { id: 'kochen', name: 'Kochen', emoji: '🍳', group: 'Haushalt' },
+      { id: 'einkaufen', name: 'Einkaufen', emoji: '🛒', group: 'Haushalt' },
+      { id: 'buchhaltung', name: 'Buchhaltung', emoji: '📋', group: 'Haushalt' },
+      // Reihe 5: Persönlich
+      { id: 'jasmin', name: 'Zeit mit Jasmin', emoji: '💛', group: 'Persönlich' },
+      { id: 'freizeit', name: 'Freizeit', emoji: '🎮', group: 'Persönlich' },
     ];
 
-    // Custom tile slots (4 free slots)
-    const CUSTOM_SLOT_IDS = ['custom-1', 'custom-2', 'custom-3', 'custom-4'];
+    const CUSTOM_SLOT_IDS = ['custom-1'];
 
     const AVAILABLE_COLORS = [
       '#ef4444', '#f97316', '#facc15', '#22c55e', '#06b6d4',
@@ -532,45 +534,46 @@
       '#a855f7', '#fbbf24', '#34d399', '#818cf8', '#fb923c',
     ];
 
-    // Colors that need light text
-    const DARK_BG_COLORS = ['#ef4444', '#3b82f6', '#8b5cf6', '#a855f7', '#818cf8', '#f43f5e'];
+    const DARK_BG_COLORS = ['#ef4444', '#3b82f6', '#8b5cf6', '#a855f7', '#818cf8', '#f43f5e', '#6366f1'];
 
     const CAT_COLORS = {
-      'kita': '#facc15',
-      'brainstorm': '#a855f7',
-      'ki-fortbildung': '#3b82f6',
-      'ki-oekosystem': '#06b6d4',
-      'hausarbeit': '#22c55e',
-      'kueche': '#86efac',
-      'kochen': '#f97316',
-      'einkaufen': '#ef4444',
-      'kinder': '#f9a8d4',
-      'eiinh': '#818cf8',
-      'bilderbuch': '#fbbf24',
-      'finanzen': '#34d399',
-      'freizeit': '#2dd4bf',
+      'eiinh': '#818cf8', 'bilderbuch': '#a78bfa', 'ki-oekosystem': '#6366f1',
+      'kita': '#facc15', 'ki-fortbildung': '#3b82f6', 'brainstorm': '#a855f7',
+      'kinder': '#f9a8d4', 'hausarbeit': '#4ade80', 'kueche': '#86efac',
+      'kochen': '#fb923c', 'einkaufen': '#f87171', 'buchhaltung': '#34d399',
+      'jasmin': '#fcd34d', 'freizeit': '#2dd4bf',
     };
 
-    // === State ===
-    let activeTimer = null;
+    // ========================================
+    // STATE — parallele Timer
+    // ========================================
+    let activeTimers = {};  // { catId: Date, ... }
     let entries = [];
     let timerInterval = null;
-    let customTiles = {}; // { 'custom-1': { name: 'Sport', emoji: '⚽', color: '#22c55e' }, ... }
+    let customTiles = {};
     let editingSlot = null;
+    let correctionTarget = null;
+    let correctionTimeout = null;
 
-    // === localStorage ===
+    // ========================================
+    // LOCALSTORAGE
+    // ========================================
     function loadData() {
       try {
         const raw = localStorage.getItem('taptime');
-        if (raw) {
-          const data = JSON.parse(raw);
-          entries = data.entries || [];
-          customTiles = data.customTiles || {};
-          if (data.activeTimer) {
-            activeTimer = {
-              category: data.activeTimer.category,
-              start: new Date(data.activeTimer.start)
-            };
+        if (!raw) return;
+        const data = JSON.parse(raw);
+        entries = data.entries || [];
+        customTiles = data.customTiles || {};
+
+        // Migration: singular activeTimer → plural activeTimers
+        if (data.activeTimer && !data.activeTimers) {
+          activeTimers = {};
+          activeTimers[data.activeTimer.category] = new Date(data.activeTimer.start);
+        } else if (data.activeTimers) {
+          activeTimers = {};
+          for (const [catId, isoStr] of Object.entries(data.activeTimers)) {
+            activeTimers[catId] = new Date(isoStr);
           }
         }
       } catch (e) {
@@ -579,18 +582,20 @@
     }
 
     function saveData() {
-      const data = {
+      const serializedTimers = {};
+      for (const [catId, date] of Object.entries(activeTimers)) {
+        serializedTimers[catId] = date.toISOString();
+      }
+      localStorage.setItem('taptime', JSON.stringify({
         entries,
         customTiles,
-        activeTimer: activeTimer ? {
-          category: activeTimer.category,
-          start: activeTimer.start.toISOString()
-        } : null
-      };
-      localStorage.setItem('taptime', JSON.stringify(data));
+        activeTimers: serializedTimers
+      }));
     }
 
-    // === Get all active categories (fixed + configured custom) ===
+    // ========================================
+    // ALL CATEGORIES (fixed + custom)
+    // ========================================
     function getAllCategories() {
       const cats = [...FIXED_CATEGORIES];
       CUSTOM_SLOT_IDS.forEach(slotId => {
@@ -601,15 +606,20 @@
       return cats;
     }
 
-    // === Timer Logic ===
+    // ========================================
+    // TIMER LOGIC — parallel
+    // ========================================
     function toggleCategory(catId) {
       if (navigator.vibrate) navigator.vibrate(50);
 
-      if (activeTimer && activeTimer.category === catId) {
-        stopTimer();
+      if (activeTimers[catId]) {
+        // Stop this one timer
+        stopTimer(catId);
+        hideCorrectionSlider();
       } else {
-        if (activeTimer) stopTimer(false);
+        // Start this timer (parallel — don't stop others!)
         startTimer(catId);
+        showCorrectionSlider(catId);
       }
 
       saveData();
@@ -617,35 +627,100 @@
     }
 
     function startTimer(catId) {
-      activeTimer = { category: catId, start: new Date() };
+      activeTimers[catId] = new Date();
       startTickInterval();
     }
 
-    function stopTimer(save = true) {
-      if (!activeTimer) return;
+    function stopTimer(catId) {
+      const start = activeTimers[catId];
+      if (!start) return;
+
       const end = new Date();
-      const duration = Math.round((end - activeTimer.start) / 1000);
+      const duration = Math.round((end - start) / 1000);
       if (duration > 5) {
         entries.push({
-          category: activeTimer.category,
-          start: activeTimer.start.toISOString(),
+          category: catId,
+          start: start.toISOString(),
           end: end.toISOString(),
           duration
         });
       }
-      activeTimer = null;
-      if (save) {
+
+      delete activeTimers[catId];
+
+      if (Object.keys(activeTimers).length === 0) {
         clearInterval(timerInterval);
         timerInterval = null;
       }
     }
 
     function startTickInterval() {
-      clearInterval(timerInterval);
+      if (timerInterval) return;
       timerInterval = setInterval(updateTimerDisplays, 1000);
     }
 
-    // === Format helpers ===
+    // ========================================
+    // CORRECTION POPUP
+    // ========================================
+    function showCorrectionSlider(catId) {
+      correctionTarget = catId;
+      const popup = document.getElementById('correctionPopup');
+      document.getElementById('correctionCurrent').textContent =
+        `Start: ${formatTime(activeTimers[catId])}`;
+      popup.classList.add('show');
+
+      clearTimeout(correctionTimeout);
+      correctionTimeout = setTimeout(hideCorrectionSlider, 5000);
+    }
+
+    function hideCorrectionSlider() {
+      document.getElementById('correctionPopup').classList.remove('show');
+      correctionTarget = null;
+      clearTimeout(correctionTimeout);
+    }
+
+    function applyCorrection(minutes) {
+      if (!correctionTarget || !activeTimers[correctionTarget]) return;
+      if (navigator.vibrate) navigator.vibrate(30);
+
+      const currentStart = activeTimers[correctionTarget];
+      const newStart = new Date(currentStart.getTime() - minutes * 60 * 1000);
+
+      // Don't go before midnight
+      const midnight = new Date();
+      midnight.setHours(0, 0, 0, 0);
+      if (newStart < midnight) newStart.setTime(midnight.getTime());
+
+      activeTimers[correctionTarget] = newStart;
+      saveData();
+      updateTimerDisplays();
+
+      document.getElementById('correctionCurrent').textContent =
+        `Start: ${formatTime(newStart)} (−${minutes} Min)`;
+
+      clearTimeout(correctionTimeout);
+      correctionTimeout = setTimeout(hideCorrectionSlider, 3000);
+    }
+
+    // Correction button listeners
+    document.querySelectorAll('.corr-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        applyCorrection(parseInt(btn.dataset.minutes));
+      });
+    });
+
+    // Click outside closes popup
+    document.addEventListener('click', (e) => {
+      const popup = document.getElementById('correctionPopup');
+      if (popup.classList.contains('show') && !popup.contains(e.target)) {
+        hideCorrectionSlider();
+      }
+    });
+
+    // ========================================
+    // FORMAT HELPERS
+    // ========================================
     function formatDuration(seconds) {
       const h = Math.floor(seconds / 3600);
       const m = Math.floor((seconds % 3600) / 60);
@@ -668,24 +743,33 @@
       return `${pad(date.getHours())}:${pad(date.getMinutes())}`;
     }
 
-    // === UI ===
+    // ========================================
+    // UI — BUILD GRID
+    // ========================================
     function buildGrid() {
       const grid = document.getElementById('grid');
       grid.innerHTML = '';
 
-      // Fixed tiles
-      FIXED_CATEGORIES.forEach(cat => {
-        grid.appendChild(createTileElement(cat.id, cat.emoji, cat.name, false));
+      let lastGroup = '';
+      FIXED_CATEGORIES.forEach((cat, i) => {
+        // Add group separator on first item of each group
+        if (cat.group !== lastGroup) {
+          const sep = document.createElement('div');
+          sep.className = 'grid-separator';
+          sep.textContent = cat.group;
+          grid.appendChild(sep);
+          lastGroup = cat.group;
+        }
+        grid.appendChild(createTileElement(cat.id, cat.emoji, cat.name));
       });
 
-      // Custom slots
+      // Custom slot
       CUSTOM_SLOT_IDS.forEach(slotId => {
         const custom = customTiles[slotId];
         if (custom) {
-          const tile = createTileElement(slotId, custom.emoji, custom.name, false);
+          const tile = createTileElement(slotId, custom.emoji, custom.name);
           tile.style.background = custom.color;
-          // Determine text color
-          if (DARK_BG_COLORS.includes(custom.color) || isColorDark(custom.color)) {
+          if (isColorDark(custom.color)) {
             tile.querySelector('.label').style.color = 'rgba(255,255,255,0.95)';
             tile.querySelector('.timer-display').style.color = 'rgba(255,255,255,0.95)';
           }
@@ -696,7 +780,7 @@
       });
     }
 
-    function createTileElement(catId, emoji, name, isEmpty) {
+    function createTileElement(catId, emoji, name) {
       const tile = document.createElement('div');
       tile.className = 'tile';
       tile.dataset.cat = catId;
@@ -707,12 +791,12 @@
       `;
       tile.addEventListener('click', () => toggleCategory(catId));
 
-      // Long press for custom tiles (both configured and empty)
+      // Long press for custom tiles
       if (catId.startsWith('custom-')) {
         let pressTimer = null;
         let didLongPress = false;
 
-        tile.addEventListener('touchstart', (e) => {
+        tile.addEventListener('touchstart', () => {
           didLongPress = false;
           pressTimer = setTimeout(() => {
             didLongPress = true;
@@ -723,16 +807,10 @@
 
         tile.addEventListener('touchend', (e) => {
           clearTimeout(pressTimer);
-          if (didLongPress) {
-            e.preventDefault();
-            // Prevent click from firing
-            e.stopImmediatePropagation();
-          }
+          if (didLongPress) { e.preventDefault(); e.stopImmediatePropagation(); }
         });
 
-        tile.addEventListener('touchmove', () => {
-          clearTimeout(pressTimer);
-        }, { passive: true });
+        tile.addEventListener('touchmove', () => clearTimeout(pressTimer), { passive: true });
       }
 
       return tile;
@@ -747,11 +825,8 @@
         <span class="label">Gedrückt halten</span>
         <span class="timer-display" id="timer-${slotId}">0:00</span>
       `;
-
-      // Tap on empty = open config
       tile.addEventListener('click', () => openEditModal(slotId));
 
-      // Also long press
       let pressTimer = null;
       tile.addEventListener('touchstart', () => {
         pressTimer = setTimeout(() => {
@@ -766,49 +841,65 @@
     }
 
     function isColorDark(hex) {
+      if (!hex || !hex.startsWith('#')) return false;
       const r = parseInt(hex.slice(1, 3), 16);
       const g = parseInt(hex.slice(3, 5), 16);
       const b = parseInt(hex.slice(5, 7), 16);
       return (r * 299 + g * 587 + b * 114) / 1000 < 140;
     }
 
+    // ========================================
+    // UI — UPDATE
+    // ========================================
     function updateUI() {
+      // Tile highlight
       document.querySelectorAll('.tile').forEach(tile => {
-        const isActive = activeTimer && activeTimer.category === tile.dataset.cat;
-        tile.classList.toggle('running', isActive);
+        tile.classList.toggle('running', !!activeTimers[tile.dataset.cat]);
       });
 
+      // Header status
       const status = document.getElementById('headerStatus');
-      if (activeTimer) {
+      const activeIds = Object.keys(activeTimers);
+
+      if (activeIds.length === 0) {
+        status.textContent = 'Kein Timer aktiv';
+        status.className = 'status';
+      } else if (activeIds.length === 1) {
         const allCats = getAllCategories();
-        const cat = allCats.find(c => c.id === activeTimer.category);
+        const cat = allCats.find(c => c.id === activeIds[0]);
         status.textContent = cat ? `${cat.emoji} ${cat.name} läuft...` : 'Timer läuft...';
         status.className = 'status active';
       } else {
-        status.textContent = 'Kein Timer aktiv';
-        status.className = 'status';
+        const allCats = getAllCategories();
+        const emojis = activeIds.map(id => {
+          const cat = allCats.find(c => c.id === id);
+          return cat ? cat.emoji : '⏱️';
+        }).join(' ');
+        status.textContent = `${emojis} ${activeIds.length} Timer aktiv`;
+        status.className = 'status active';
       }
 
       updateTimerDisplays();
     }
 
     function updateTimerDisplays() {
-      if (!activeTimer) return;
-      const elapsed = Math.round((new Date() - activeTimer.start) / 1000);
-      const display = document.getElementById(`timer-${activeTimer.category}`);
-      if (display) display.textContent = formatDuration(elapsed);
+      for (const [catId, start] of Object.entries(activeTimers)) {
+        const elapsed = Math.round((new Date() - start) / 1000);
+        const display = document.getElementById(`timer-${catId}`);
+        if (display) display.textContent = formatDuration(elapsed);
+      }
     }
 
-    // === Edit Modal ===
+    // ========================================
+    // EDIT MODAL (custom tiles)
+    // ========================================
     function openEditModal(slotId) {
       editingSlot = slotId;
       const existing = customTiles[slotId];
-
       document.getElementById('editName').value = existing ? existing.name : '';
       document.getElementById('editEmoji').value = existing ? existing.emoji : '';
       document.getElementById('resetBtn').style.display = existing ? 'block' : 'none';
 
-      // Build color picker
       const picker = document.getElementById('colorPicker');
       picker.innerHTML = '';
       const selectedColor = existing ? existing.color : AVAILABLE_COLORS[0];
@@ -836,17 +927,11 @@
       const name = document.getElementById('editName').value.trim();
       const emoji = document.getElementById('editEmoji').value.trim();
       const selectedDot = document.querySelector('.color-dot.selected');
-      const color = selectedDot ? selectedDot.style.background : AVAILABLE_COLORS[0];
+      const color = selectedDot ? rgbToHex(selectedDot.style.background) : AVAILABLE_COLORS[0];
 
-      if (!name) {
-        document.getElementById('editName').focus();
-        return;
-      }
+      if (!name) { document.getElementById('editName').focus(); return; }
 
-      // Convert rgb to hex if needed
-      const hexColor = rgbToHex(color);
-
-      customTiles[editingSlot] = { name, emoji: emoji || '📌', color: hexColor };
+      customTiles[editingSlot] = { name, emoji: emoji || '📌', color };
       saveData();
       buildGrid();
       updateUI();
@@ -855,13 +940,10 @@
 
     function resetCustomTile() {
       if (!editingSlot) return;
-
-      // Stop timer if running on this slot
-      if (activeTimer && activeTimer.category === editingSlot) {
-        stopTimer();
+      if (activeTimers[editingSlot]) {
+        stopTimer(editingSlot);
         saveData();
       }
-
       delete customTiles[editingSlot];
       saveData();
       buildGrid();
@@ -876,7 +958,9 @@
       return '#' + match.slice(0, 3).map(n => parseInt(n).toString(16).padStart(2, '0')).join('');
     }
 
-    // === Today View ===
+    // ========================================
+    // TODAY VIEW
+    // ========================================
     function updateTodayView() {
       const today = new Date().toISOString().slice(0, 10);
       const todayEntries = entries.filter(e => e.start.slice(0, 10) === today);
@@ -886,9 +970,12 @@
         sums[e.category] = (sums[e.category] || 0) + e.duration;
       });
 
-      if (activeTimer && activeTimer.start.toISOString().slice(0, 10) === today) {
-        const elapsed = Math.round((new Date() - activeTimer.start) / 1000);
-        sums[activeTimer.category] = (sums[activeTimer.category] || 0) + elapsed;
+      // Add all active timers running today
+      for (const [catId, start] of Object.entries(activeTimers)) {
+        if (start.toISOString().slice(0, 10) === today) {
+          const elapsed = Math.round((new Date() - start) / 1000);
+          sums[catId] = (sums[catId] || 0) + elapsed;
+        }
       }
 
       const totalSeconds = Object.values(sums).reduce((a, b) => a + b, 0);
@@ -909,20 +996,16 @@
         let color = CAT_COLORS[catId] || '#666';
         if (customTiles[catId]) color = customTiles[catId].color;
 
-        // Collect time entries for this category
+        // Collect time entries
         const catEntries = todayEntries.filter(e => e.category === catId);
         let entriesHtml = '';
         catEntries.forEach(e => {
-          const startTime = formatTime(new Date(e.start));
-          const endTime = formatTime(new Date(e.end));
-          const dur = formatHoursMinutes(e.duration);
-          entriesHtml += `<div class="time-entry"><span class="time-range">${startTime} – ${endTime}</span><span class="time-dur">${dur}</span></div>`;
+          entriesHtml += `<div class="time-entry"><span class="time-range">${formatTime(e.start)} – ${formatTime(e.end)}</span><span class="time-dur">${formatHoursMinutes(e.duration)}</span></div>`;
         });
 
-        // Show active timer entry if running
-        if (activeTimer && activeTimer.category === catId) {
-          const startTime = formatTime(activeTimer.start);
-          entriesHtml += `<div class="time-entry"><span class="time-range">${startTime} – jetzt</span><span class="time-dur" style="color:#4ade80;">läuft...</span></div>`;
+        // Active timer for this category
+        if (activeTimers[catId]) {
+          entriesHtml += `<div class="time-entry"><span class="time-range">${formatTime(activeTimers[catId])} – jetzt</span><span class="time-dur" style="color:#4ade80;">läuft...</span></div>`;
         }
 
         barsDiv.innerHTML += `
@@ -944,9 +1027,15 @@
       }
     }
 
-    // === Export ===
+    // ========================================
+    // EXPORT
+    // ========================================
     function exportJSON() {
-      const data = { entries, customTiles, exportDate: new Date().toISOString() };
+      const serializedTimers = {};
+      for (const [catId, date] of Object.entries(activeTimers)) {
+        serializedTimers[catId] = date.toISOString();
+      }
+      const data = { entries, customTiles, activeTimers: serializedTimers, exportDate: new Date().toISOString() };
       copyToClipboard(JSON.stringify(data, null, 2), 'JSON kopiert!');
     }
 
@@ -972,9 +1061,11 @@
         sums[e.category] = (sums[e.category] || 0) + e.duration;
       });
 
-      if (activeTimer && activeTimer.start.toISOString().slice(0, 10) === today) {
-        const elapsed = Math.round((new Date() - activeTimer.start) / 1000);
-        sums[activeTimer.category] = (sums[activeTimer.category] || 0) + elapsed;
+      for (const [catId, start] of Object.entries(activeTimers)) {
+        if (start.toISOString().slice(0, 10) === today) {
+          const elapsed = Math.round((new Date() - start) / 1000);
+          sums[catId] = (sums[catId] || 0) + elapsed;
+        }
       }
 
       const totalSeconds = Object.values(sums).reduce((a, b) => a + b, 0);
@@ -992,9 +1083,7 @@
     }
 
     function copyToClipboard(text, msg) {
-      navigator.clipboard.writeText(text).then(() => {
-        showFeedback(msg);
-      }).catch(() => {
+      navigator.clipboard.writeText(text).then(() => showFeedback(msg)).catch(() => {
         const ta = document.createElement('textarea');
         ta.value = text;
         document.body.appendChild(ta);
@@ -1014,15 +1103,18 @@
     function confirmClear() {
       if (confirm('Wirklich ALLE Daten löschen? Das kann nicht rückgängig gemacht werden.')) {
         entries = [];
-        activeTimer = null;
+        activeTimers = {};
         clearInterval(timerInterval);
+        timerInterval = null;
         saveData();
         updateUI();
         showFeedback('Alle Daten gelöscht');
       }
     }
 
-    // === Navigation ===
+    // ========================================
+    // NAVIGATION
+    // ========================================
     document.querySelectorAll('.nav-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const viewId = btn.dataset.view;
@@ -1034,21 +1126,21 @@
       });
     });
 
-    // Close modal on backdrop click
     document.getElementById('editModal').addEventListener('click', (e) => {
       if (e.target.id === 'editModal') closeEditModal();
     });
 
-    // === Service Worker ===
+    // ========================================
+    // SERVICE WORKER + INIT
+    // ========================================
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js');
     }
 
-    // === Init ===
     loadData();
     buildGrid();
     updateUI();
-    if (activeTimer) startTickInterval();
+    if (Object.keys(activeTimers).length > 0) startTickInterval();
 
     setInterval(() => {
       if (document.getElementById('viewToday').classList.contains('active')) {

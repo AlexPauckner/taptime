@@ -1,4 +1,4 @@
-const CACHE_NAME = 'taptime-v1';
+const CACHE_NAME = 'taptime-v2';
 const ASSETS = [
   '/',
   '/index.html',
