@@ -1,0 +1,2 @@
+[     389ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://alexpauckner.github.io/favicon.ico:0
+[     538ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ https://alexpauckner.github.io/taptime/:0
